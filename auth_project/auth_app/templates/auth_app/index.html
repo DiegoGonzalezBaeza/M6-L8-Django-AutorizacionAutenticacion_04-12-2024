@@ -12,6 +12,18 @@
         {% if user.is_authenticated %}
             <h2>Usuario Autenticado</h2>
             <p class="text-center">Hello, {{ user.username }}!</p>
+            
+            <h2 class="text-center">Usuarios Registrados</h2>
+            <ul class="list-group">
+                {% for usuario in users %}
+                    <li class="list-group-item">
+                        <strong>Username:</strong> {{ usuario.username }}<br>
+                        <strong>Email:</strong> {{ usuario.email }}<br>
+                        <strong>Fecha de registro:</strong> {{ usuario.date_joined }}
+                    </li>
+                {% endfor %}
+            </ul>
+
             <form method="post" action="{% url 'logout' %}" class="text-center">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Logout</button>
